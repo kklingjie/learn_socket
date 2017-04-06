@@ -1,6 +1,6 @@
 #include <arpa/inet.h>
 #include <stdio.h>
-
+#include <string.h>
 // struct in_addr {
 //     unsigned long int s_addr;
 // };
@@ -8,7 +8,7 @@
 //IP地址转换
 int main(int argc, char const *argv[]) {
     long addr_str = inet_addr("1.2.3.4");
-    printf("%ld",addr_str);
+    printf("%ld\n",addr_str);
 
     //inet_aton
     // struct in_addr adr_inet;
@@ -16,16 +16,15 @@ int main(int argc, char const *argv[]) {
 
     //inet_ntoa 不可重入
     struct in_addr addr1,addr2;
-    unsigned long l1,l2;
+    ulong l1,l2;
+    l1= inet_addr("192.168.0.74");
+    l2 = inet_addr("211.100.21.179");
+    memcpy(&addr1, &l1, 4);
+    memcpy(&addr2, &l2, 4);
 
-    char l1 = inet_addr("1.2.3.4");
-    char l2 = inet_addr("3.5.6.7");
-
-    memcpy(&addr1,&l1,4);
-    memcpy(&addr2,&l2,4);
-
-    printf("sz1:%s\n", inet_ntoa(addr1));
-    printf("sz2:%s\n", inet_ntoa(addr2));
+    printf("%s : %s\n", inet_ntoa(addr1), inet_ntoa(addr2)); //注意这一句的运行结果
+    printf("%s\n", inet_ntoa(addr1));
+    printf("%s\n", inet_ntoa(addr2));
 
     return 0;
 }
