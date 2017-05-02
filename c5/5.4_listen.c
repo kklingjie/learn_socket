@@ -1,5 +1,5 @@
 #include <sys/socket.h>
-#include <netinet.h>
+#include <netinet/in.h>
 #include <signal.h>
 #include <unistd.h>
 #include <stdlib.h>
